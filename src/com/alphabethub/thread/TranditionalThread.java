@@ -38,7 +38,7 @@ public class TranditionalThread {
         });
         thread1.start();
 
-
+        //面试题：那一个run会执行？答案：Thread的run方法
         new Thread(new Runnable() {
             @Override
             public void run() {

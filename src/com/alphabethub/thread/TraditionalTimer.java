@@ -6,6 +6,7 @@ import java.util.TimerTask;
 
 /**
  * 传统定时器的实现
+ * 创建一个每个2秒执行一次的定时器
  */
 public class TraditionalTimer {
     public static void main(String[] args) {
