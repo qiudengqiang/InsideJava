@@ -1,5 +1,6 @@
 package com.alphabethub.thread;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -21,7 +22,7 @@ public class TraditionalTimer {
         new Timer().schedule(new MyTimerTask(), 2000);
 
         while (true) {
-            System.out.println(new Date().getSeconds());
+            System.out.println(Calendar.getInstance().get(Calendar.SECOND));
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
