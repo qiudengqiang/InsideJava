@@ -22,7 +22,7 @@ public class MyDynamicProxy {
     static class HelloImpl implements Hello{
         @Override
         public void sayHello() {
-            System.out.printf("hello world");
+            System.out.println("hello world");
         }
     }
 
@@ -36,7 +36,7 @@ public class MyDynamicProxy {
 
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-            System.out.printf("Invoking sayHello");
+            System.out.println("Invoking sayHello");
             Object result = method.invoke(target, args);
             return result;
         }

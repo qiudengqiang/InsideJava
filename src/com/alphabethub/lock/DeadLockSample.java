@@ -11,24 +11,25 @@ import java.util.concurrent.TimeUnit;
  * 面试谈到死锁的部分时，有时候面试官会即兴让写一个死锁的例子
  */
 public class DeadLockSample extends Thread {
-  private String first;
-  private String second;
-  public DeadLockSample(String name, String first, String second){
-      super(name);
-      this.first = first;
-      this.second = second;
-  }
+    private String first;
+    private String second;
+
+    public DeadLockSample(String name, String first, String second) {
+        super(name);
+        this.first = first;
+        this.second = second;
+    }
 
     @Override
     public void run() {
-        synchronized (first){
-            System.out.println(this.getName()+" obtained："+first);
+        synchronized (first) {
+            System.out.println(this.getName() + " obtained：" + first);
             try {
                 Thread.sleep(1000L);
-                synchronized (second){
-                    System.out.println(this.getName()+" obtained："+second);
+                synchronized (second) {
+                    System.out.println(this.getName() + " obtained：" + second);
                 }
-            }catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 // do nothing
             }
         }
@@ -40,9 +41,9 @@ public class DeadLockSample extends Thread {
         // 死锁样例代码
         String lockA = "lockA";
         String lockB = "lockB";
-        DeadLockSample t1 = new DeadLockSample("Thread1",lockA,lockB);
+        DeadLockSample t1 = new DeadLockSample("Thread1", lockA, lockB);
         //交换顺序才能导致死锁
-        DeadLockSample t2 = new DeadLockSample("Thread2",lockB,lockA);
+        DeadLockSample t2 = new DeadLockSample("Thread2", lockB, lockA);
         t1.start();
         t2.start();
         t1.join();
@@ -52,7 +53,7 @@ public class DeadLockSample extends Thread {
     /**
      * Java提供的api，用于定位死锁
      */
-    public static void findDeadLock(){
+    public static void findDeadLock() {
         ThreadMXBean mbean = ManagementFactory.getThreadMXBean();
         Runnable dlCheck = new Runnable() {
 
